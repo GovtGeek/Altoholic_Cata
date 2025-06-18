@@ -13,7 +13,16 @@ local MODE_SKILLS = 3
 local MODE_ACTIVITY = 4
 local MODE_MISCELLANEOUS = 5
 
-local SKILL_CAP = 525
+local skillCapsClassic = {
+	[LE_EXPANSION_CLASSIC] = 300,
+	[LE_EXPANSION_BURNING_CRUSADE] = 350,
+	[LE_EXPANSION_WRATH_OF_THE_LICH_KING] = 450,
+	[LE_EXPANSION_CATACLYSM] = 525,
+	[LE_EXPANSION_MISTS_OF_PANDARIA] = 600,
+	[LE_EXPANSION_WARLORDS_OF_DRAENOR] = 750,
+	[LE_EXPANSION_LEGION] = 900,
+}
+local SKILL_CAP = skillCapsClassic[LE_EXPANSION_LEVEL_CURRENT]
 
 local INFO_REALM_LINE = 0
 local INFO_CHARACTER_LINE = 1
@@ -126,9 +135,11 @@ local function TradeskillHeader_OnEnter(frame, tooltip)
 	tooltip:AddLine(" ")
 	tooltip:AddLine(format("%s%s|r %s %s", colors.recipeGrey, L["COLOR_GREY"], L["up to"], (floor(SKILL_CAP*0.25)-1)),1,1,1)
 	tooltip:AddLine(format("%s%s|r %s %s", colors.red, RED_GEM, L["up to"], (floor(SKILL_CAP*0.50)-1)),1,1,1)
-	tooltip:AddLine(format("%s%s|r %s %s", colors.orange, L["COLOR_ORANGE"], L["up to"], (floor(SKILL_CAP*0.75)-1)),1,1,1)
+	--tooltip:AddLine(format("%s%s|r %s %s", colors.orange, L["COLOR_ORANGE"], L["up to"], (floor(SKILL_CAP*0.75)-1)),1,1,1)
+	tooltip:AddLine(format("%s%s|r %s %s", colors.green, L["COLOR_GREEN"], L["up to"], (floor(SKILL_CAP*0.75)-1)),1,1,1)
 	tooltip:AddLine(format("%s%s|r %s %s", colors.yellow, YELLOW_GEM, L["up to"], (SKILL_CAP-1)),1,1,1)
-	tooltip:AddLine(format("%s%s|r %s %s %s", colors.green, L["COLOR_GREEN"], L["at"], SKILL_CAP, L["and above"]),1,1,1)
+	--tooltip:AddLine(format("%s%s|r %s %s %s", colors.green, L["COLOR_GREEN"], L["at"], SKILL_CAP, L["and above"]),1,1,1)
+	tooltip:AddLine(format("%s%s|r %s %s %s", colors.orange, L["COLOR_ORANGE"], L["at"], SKILL_CAP, L["and above"]),1,1,1)
 end
 
 local function Tradeskill_OnEnter(frame, professionIndex, showRecipeStats)
