@@ -115,7 +115,8 @@ local function LevelIcon_Initialize(frame, level)
 	frame:AddButtonWithArgs("60-69", 5, OnLevelFilterChange, 60, 69, (option == 5))
 	frame:AddButtonWithArgs("70-79", 6, OnLevelFilterChange, 70, 79, (option == 6))
 	frame:AddButtonWithArgs("80-84", 7, OnLevelFilterChange, 80, 84, (option == 7))
-	frame:AddButtonWithArgs("85", 8, OnLevelFilterChange, 85, 85, (option == 8))
+	frame:AddButtonWithArgs("85-89", 8, OnLevelFilterChange, 85, 89, (option == 8))
+	frame:AddButtonWithArgs("90", 9, OnLevelFilterChange, 90, 90, (option == 9))
 	frame:AddCloseMenu()
 end
 
@@ -244,7 +245,7 @@ DataStore:OnAddonLoaded("Altoholic_Summary", function()
 		["CurrentFactions"] = 3,						-- 1 = Alliance, 2 = Horde, 3 = Both
 		["CurrentLevels"] = 1,							-- 1 = All
 		["CurrentLevelsMin"] = 1,							
-		["CurrentLevelsMax"] = 85,					
+		["CurrentLevelsMax"] = 90,					
 		["CurrentBankType"] = 0,						-- 0 = All
 		["CurrentClasses"] = 0,							-- 0 = All
 		["CurrentTradeSkill"] = 0,						-- 0 = All
