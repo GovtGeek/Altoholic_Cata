@@ -151,7 +151,7 @@ local callbacks = {
 			currentItemID = LCI:GetCraftResultItem(spellID)
 			local orange, yellow, green, grey = LCL:GetCraftLevels(spellID)
 			
-			currentTexture = GetItemIcon(currentItemID) or icons.questionMark
+			currentTexture = C_Item.GetItemIconByID(currentItemID) or icons.questionMark
 			-- print("currentItemID : " .. (currentItemID or "nil"))
 			-- print("currentTexture : " .. (currentTexture or "nil"))
 			
@@ -200,7 +200,9 @@ local callbacks = {
 				
 				-- if DataStore:IsCraftKnown(profession, currentList[dataRowID]) then
 				-- Search on the item ID, not the spellID, it's not available when scanning professions !
-				if DataStore:IsCraftKnown(profession, currentItemID) then
+				--if DataStore:IsCraftKnown(profession, currentItemID) then
+				--if DataStore:IsCraftKnown(profession, LCI:GetCraftResultItem(currentList[dataRowID])) then
+				if DataStore:IsCraftKnown(profession, currentList[dataRowID]) then
 					vc = 1.0
 					text = icons.ready
 				else
