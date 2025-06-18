@@ -165,6 +165,7 @@ L["Class Skills"] = true
 L["Classes: Death Knight"] = true
 L["Classes: Hunter"] = true
 L["Classes: Mage"] = true
+L["Classes: Monk"] = true
 L["Classes: Paladin"] = true
 L["Classes: Priest"] = true
 L["Classes: Rogue"] = true
