@@ -1,8 +1,8 @@
 local addonName, addon = ...
 _G[addonName] = addon
 
-addon.Version = "v4.4.005"
-addon.VersionNum = 404005
+addon.Version = "v5.5.000"
+addon.VersionNum = 505000
 
 LibStub("LibMVC-1.0"):Embed(addon)
 
@@ -422,8 +422,8 @@ for index, name in ipairs(tabList) do
 end
 
 local function SafeLoadAddOn(name)
-	if not IsAddOnLoaded(name) then
-		LoadAddOn(name)
+	if not C_AddOns.IsAddOnLoaded(name) then
+		C_AddOns.LoadAddOn(name)
 	end
 end
 
