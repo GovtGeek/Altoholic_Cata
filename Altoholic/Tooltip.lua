@@ -513,7 +513,7 @@ local function ProcessTooltip(tooltip, link)
 	-- addon:CheckMaterialUtility(itemID)
 	
 	if options.ShowItemID then
-		local iLevel = select(4, GetItemInfo(itemID))
+		local iLevel = select(4, C_Item.GetItemInfo(itemID))
 		
 		if iLevel then
 			tooltip:AddLine(" ",1,1,1);
@@ -521,7 +521,7 @@ local function ProcessTooltip(tooltip, link)
 		end
 	end
 	
-	local _, _, _, _, _, itemType, itemSubType, _, _, _, sellPrice = GetItemInfo(itemID)
+	local _, _, _, _, _, itemType, itemSubType, _, _, _, sellPrice = C_Item.GetItemInfo(itemID)
 	
 	if (sellPrice and sellPrice > 0) and (options.ShowSellPrice == true) then	-- 0 = cannot be sold
 		tooltip:AddLine(" ",1,1,1)
