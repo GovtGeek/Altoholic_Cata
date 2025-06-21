@@ -33,7 +33,7 @@ local categories = {
 			LE_ITEM_WEAPON_FISHINGPOLE,
 		},
 		--]]
-		subClasses = C_AuctionHouse.GetAuctionItemSubClasses(LE_ITEM_CLASS_CONTAINER or Enum.ItemClass.Weapon),
+		subClasses = C_AuctionHouse.GetAuctionItemSubClasses(LE_ITEM_CLASS_WEAPON or Enum.ItemClass.Weapon),
 		isCollapsed = true,
 	},
 	{
@@ -45,7 +45,7 @@ local categories = {
 			LE_ITEM_ARMOR_GENERIC, LE_ITEM_ARMOR_SHIELD, LE_ITEM_ARMOR_COSMETIC,
 		},
 		--]]
-		subClasses = C_AuctionHouse.GetAuctionItemSubClasses(LE_ITEM_CLASS_CONTAINER or Enum.ItemClass.Armor),
+		subClasses = C_AuctionHouse.GetAuctionItemSubClasses(LE_ITEM_CLASS_ARMOR or Enum.ItemClass.Armor),
 		isCollapsed = true,
 	},
 	{
