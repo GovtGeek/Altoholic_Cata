@@ -462,7 +462,7 @@ local equipmentSlotIcons = {
 	"Tabard"
 }
 if LE_EXPANSION_LEVEL_CURRENT <= LE_EXPANSION_CATACLYSM then
-	table.insert(equipmentSlotIcons, #equipmentSlotIcons - 1, "Ranged")
+	table.insert(equipmentSlotIcons, #equipmentSlotIcons, "Ranged")
 end
 
 function addon:GetEquipmentSlotIcon(index)
