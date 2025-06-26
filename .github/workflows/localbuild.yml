@@ -1,0 +1,110 @@
+name: Local Build
+
+on:
+  #push:
+    #branches: [ "main", "latest" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build_local:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container:
+      volumes:
+        #- altoholic:/tmp/altoholic
+        # Bind directory to allow saving of output
+        - /tmp/altoholic:/tmp/altoholic
+
+    # specify the environment variables used by the packager, matching the secrets from the project on GitHub
+    env:
+      DISPLAY_NAME: ""
+      ZIP_FILE_NAME: ""
+      ADDON_VERSION: ""
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      - name: Get branch name
+        run: |
+          echo "Branch name: ${GITHUB_REF##*/}"
+
+      - name: Copy subfolders from DataStore repositories
+        run: |
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore.git temp
+          mv temp/DataStore .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Achievements.git temp
+          mv temp/DataStore_Achievements .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Agenda.git temp
+          mv temp/DataStore_Agenda .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Auctions.git temp
+          mv temp/DataStore_Auctions .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Characters.git temp
+          mv temp/DataStore_Characters .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Containers.git temp
+          mv temp/DataStore_Containers .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Crafts.git temp
+          mv temp/DataStore_Crafts .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Currencies.git temp
+          mv temp/DataStore_Currencies .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Inventory.git temp
+          mv temp/DataStore_Inventory .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Mails.git temp
+          mv temp/DataStore_Mails .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Quests.git temp
+          mv temp/DataStore_Quests .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Reputations.git temp
+          mv temp/DataStore_Reputations .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Spells.git temp
+          mv temp/DataStore_Spells .
+          rm -rf temp
+          
+          git clone -b altoholic_mists_classic https://github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/DataStore_Talents.git temp
+          mv temp/DataStore_Talents .
+          rm -rf temp
+          
+      - name: Extract Version
+        run: |
+          ADDON_VERSION=$(grep -oP "## Version: \K[^\r ]+" Altoholic/Altoholic.toc)
+          echo "Version found: $ADDON_VERSION"
+          echo "ADDON_VERSION=$ADDON_VERSION" >> $GITHUB_ENV
+
+      # Runs a single command using the runners shell
+      - name: Generate Zip file
+        run: |
+          # Combine date and value to form the zip file name
+          DISPLAY_NAME="Altoholic_Mists_v$ADDON_VERSION" 
+          ZIP_FILE_NAME="$DISPLAY_NAME.zip"
+
+          zip -q -r -9 "$ZIP_FILE_NAME" * -x README.md
+          echo "File name: $ZIP_FILE_NAME"
+          cp "$ZIP_FILE_NAME" /tmp/altoholic/
