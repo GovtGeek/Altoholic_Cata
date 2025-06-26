@@ -33,7 +33,7 @@ jobs:
 
       - name: Get branch name
         run: |
-          echo "Branch name: ${GITHUB_REF##*/} ({{ github.ref_name }})"
+          echo "Branch name: ${GITHUB_REF##*/} (${{ github.ref_name }})"
 
       - name: Copy subfolders from DataStore repositories
         run: |
