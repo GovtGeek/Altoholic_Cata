@@ -108,7 +108,7 @@ jobs:
           echo "File name: $ZIP_FILE_NAME"
 
   build_local:
-    if: ${{ github.event.inputs.LOCAL_BUILD == "true" }}
+    if: ${{ github.event.inputs.LOCAL_BUILD == 'true' }}
     needs: build
     runs-on: ubuntu-latest
     container:
@@ -121,7 +121,7 @@ jobs:
         run: cp "$ZIP_FILE_NAME" /tmp/altoholic/
 
   release:
-    if: ${{ github.event.inputs.LOCAL_BUILD == "false" }}
+    if: ${{ github.event.inputs.LOCAL_BUILD == 'false' }}
     needs: build
     runs-on: ubuntu-latest
     steps:
