@@ -9,16 +9,16 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # This workflow contains a single job called "build_local"
   build_local:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:latest
-      volumes:
+    #container:
+      #image: ubuntu:latest
+      #volumes:
         #- altoholic:/tmp/altoholic
         # Bind directory to allow saving of output
-        - /tmp/altoholic:/tmp/altoholic
+        #- /tmp/altoholic:/tmp/altoholic
 
     # specify the environment variables used by the packager, matching the secrets from the project on GitHub
     env:
