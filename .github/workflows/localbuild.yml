@@ -6,19 +6,17 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      LOCAL_BUILD:
+        description: 'Local build'
+        type: boolean
+        required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build_local"
-  build_local:
-    # The type of runner that the job will run on
+  build:
     runs-on: ubuntu-latest
-    #container:
-      #image: ubuntu:latest
-      #volumes:
-        #- altoholic:/tmp/altoholic
-        # Bind directory to allow saving of output
-        #- /tmp/altoholic:/tmp/altoholic
+    # The type of runner that the job will run on
 
     # specify the environment variables used by the packager, matching the secrets from the project on GitHub
     env:
@@ -108,4 +106,33 @@ jobs:
 
           zip -q -r -9 "$ZIP_FILE_NAME" * -x README.md
           echo "File name: $ZIP_FILE_NAME"
-          cp "$ZIP_FILE_NAME" /tmp/altoholic/
+
+  build_local:
+    if: ${{ github.event.inputs.LOCAL_BUILD == Local }}
+    needs: build
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:latest
+      volumes:
+        # Bind directory to allow saving of output
+        - /tmp/altoholic:/tmp/altoholic
+    steps:
+      - name: Copy zip to local container space
+        run: cp "$ZIP_FILE_NAME" /tmp/altoholic/
+
+  release:
+    if: ${{ github.event.inputs.Build != Local }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          files: .release/{{ env.ZIP_FILE_NAME }}
+          tag_name: ${{ env.ADDON_VERSION }}
+          draft: false
+          prerelease: true
+      
