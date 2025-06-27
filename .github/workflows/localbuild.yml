@@ -32,6 +32,7 @@ jobs:
       - name: Get branch name
         run: |
           echo "Branch name: ${GITHUB_REF##*/} (${{ github.ref_name }})"
+          echo "Current directory: ${PWD}"
 
       - name: Copy subfolders from DataStore repositories
         run: |
@@ -110,10 +111,10 @@ jobs:
           echo "File name: $ZIP_FILE_NAME"
 
       # Create a package that could be sent to Curseforge
-      - name: Package and release
-        uses: BigWigsMods/packager@master
-        with:
-          args: -t Altoholic -r .release
+      #- name: Package and release
+        #uses: BigWigsMods/packager@master
+        #with:
+          #args: -t Altoholic -r .release
 
   build_local:
     if: ${{ github.event.inputs.LOCAL_BUILD == 'true' }}
