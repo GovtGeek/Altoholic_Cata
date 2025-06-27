@@ -32,10 +32,10 @@ jobs:
       - name: Get branch name
         run: |
           echo "Branch name: ${GITHUB_REF##*/} (${{ github.ref_name }})"
-          echo "Current directory: ${PWD}"
 
       - name: Copy subfolders from DataStore repositories
         run: |
+          echo "Current directory: ${PWD}"
           git clone -b ${{ github.ref_name }} https://github.com/${{ github.repository_owner }}/DataStore.git temp
           mv temp/DataStore .
           rm -rf temp
@@ -107,7 +107,7 @@ jobs:
           DISPLAY_NAME="Altoholic_Mists_v$ADDON_VERSION" 
           ZIP_FILE_NAME="$DISPLAY_NAME.zip"
 
-          zip -q -r -9 "$ZIP_FILE_NAME" * -x README.md
+          zip -q -r -9 "$ZIP_FILE_NAME" * -x README.md -x .github
           echo "File name: $ZIP_FILE_NAME"
 
       # Create a package that could be sent to Curseforge
