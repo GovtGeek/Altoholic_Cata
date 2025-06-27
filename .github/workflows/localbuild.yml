@@ -112,6 +112,8 @@ jobs:
       # Create a package that could be sent to Curseforge
       - name: Package and release
         uses: BigWigsMods/packager@master
+        with:
+          args: -t Altoholic -r .release
 
   build_local:
     if: ${{ github.event.inputs.LOCAL_BUILD == 'true' }}
