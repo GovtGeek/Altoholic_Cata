@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      ADDON_VERSION: ${{ steps.extract_version.outputs.value }}
+      ADDON_VERSION: ${{ steps.extract_version.outputs.ADDON_VERSION }}
     # specify the environment variables used by the packager, matching the secrets from the project on GitHub
     env:
       DISPLAY_NAME: ""
@@ -97,7 +97,7 @@ jobs:
           ADDON_VERSION=$(grep -oP "## Version: \K[^\r ]+" Altoholic/Altoholic.toc)
           echo "Version found: $ADDON_VERSION"
           echo "ADDON_VERSION=$ADDON_VERSION" >> $GITHUB_ENV
-          echo "::set-output name=value::$ADDON_VERSION"
+          echo "ADDON_VERSION=$ADDON_VERSION" >> $GITHUB_OUTPUT
 
       # Runs a single command using the runners shell
       - name: Generate Zip file
