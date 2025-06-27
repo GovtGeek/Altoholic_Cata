@@ -108,6 +108,7 @@ jobs:
           ZIP_FILE_NAME="$DISPLAY_NAME.zip"
 
           echo "Current directory: ${PWD}"
+          echo "$(ls)"
           zip -q -r -9 "$ZIP_FILE_NAME" * -x README.md -x .github
           echo "File name: $ZIP_FILE_NAME"
 
