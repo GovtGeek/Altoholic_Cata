@@ -16,8 +16,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # The type of runner that the job will run on
-
+    outputs:
+      ADDON_VERSION: ${{ steps.extract_version.outputs.value }}
     # specify the environment variables used by the packager, matching the secrets from the project on GitHub
     env:
       DISPLAY_NAME: ""
@@ -92,10 +92,12 @@ jobs:
           rm -rf temp
           
       - name: Extract Version
+        id: extract_version
         run: |
           ADDON_VERSION=$(grep -oP "## Version: \K[^\r ]+" Altoholic/Altoholic.toc)
           echo "Version found: $ADDON_VERSION"
           echo "ADDON_VERSION=$ADDON_VERSION" >> $GITHUB_ENV
+          echo "::set-output name=value::$ADDON_VERSION"
 
       # Runs a single command using the runners shell
       - name: Generate Zip file
@@ -125,11 +127,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Extract Version
-        run: |
-          ADDON_VERSION=$(grep -oP "## Version: \K[^\r ]+" Altoholic/Altoholic.toc)
-          echo "Version found: $ADDON_VERSION"
-          echo "ADDON_VERSION=$ADDON_VERSION" >> $GITHUB_ENV
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v2
@@ -137,7 +134,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
           files: .release/${{ env.ZIP_FILE_NAME }}
-          tag_name: ${{ env.ADDON_VERSION }}
+          tag_name: ${{ needs.build.outputs.ADDON_VERSION }}
           draft: false
           prerelease: true
       
