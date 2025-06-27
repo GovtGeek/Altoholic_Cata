@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       ADDON_VERSION: ${{ steps.extract_version.outputs.ADDON_VERSION }}
+      ZIP_FILE_NAME: ${{ steps.generate_zip_file.outputs.ZIP_FILE_NAME}}
     # specify the environment variables used by the packager, matching the secrets from the project on GitHub
     env:
       DISPLAY_NAME: ""
@@ -102,21 +103,23 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Generate Zip file
+        id: generate_zip_file
         run: |
           # Combine date and value to form the zip file name
           DISPLAY_NAME="Altoholic_Mists_v$ADDON_VERSION" 
           ZIP_FILE_NAME="$DISPLAY_NAME.zip"
+          echo "ZIP_FILE_NAME=$ZIP_FILE_NAME" >> $GITHUB_OUTPUT
 
           echo "Current directory: ${PWD}"
           echo "$(ls)"
           zip -q -r -9 "$ZIP_FILE_NAME" * -x README.md -x .github
           echo "File name: $ZIP_FILE_NAME"
 
-      # Create a package that could be sent to Curseforge
-      #- name: Package and release
-        #uses: BigWigsMods/packager@master
-        #with:
-          #args: -t Altoholic -r .release
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: $ZIP_FILE_NAME
+          path: ./$ZIP_FILE_NAME
 
   build_local:
     if: ${{ github.event.inputs.LOCAL_BUILD == 'true' }}
@@ -128,6 +131,10 @@ jobs:
         # Bind directory to allow saving of output
         - /tmp/altoholic:/tmp/altoholic
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.ZIP_FILE_NAME }}
       - name: Copy zip to local container space
         run: cp "$ZIP_FILE_NAME" /tmp/altoholic/
 
@@ -136,10 +143,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Current directory
-        run: |
-          echo "Current directory: ${PWD}"
-        
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.ZIP_FILE_NAME }}
+
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v2
