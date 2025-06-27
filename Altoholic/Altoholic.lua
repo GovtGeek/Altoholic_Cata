@@ -318,7 +318,7 @@ DataStore:OnPlayerLogin(function()
 	Orig_MerchantFrame_UpdateMerchantInfo = MerchantFrame_UpdateMerchantInfo
 	MerchantFrame_UpdateMerchantInfo = MerchantFrame_UpdateMerchantInfoHook
 	
-	AltoholicFrameName:SetText(format("Altoholic |cFFFF7F00Mists Of Pandaria|r Classic %s%s by %sThaoky", colors.white, addon.Version, colors.classMage))
+	AltoholicFrameName:SetText(format("Altoholic |cFFFF7F00Mists Of Pandaria|r Classic %s%s|r by %sThaoky", colors.white, addon.Version, colors.classMage))
 
 	-- local realm = GetRealmName()
 	-- local player = UnitName("player")
