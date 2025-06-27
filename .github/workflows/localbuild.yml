@@ -109,6 +109,10 @@ jobs:
           zip -q -r -9 "$ZIP_FILE_NAME" * -x README.md
           echo "File name: $ZIP_FILE_NAME"
 
+      # Create a package that could be sent to Curseforge
+      - name: Package and release
+        uses: BigWigsMods/packager@master
+
   build_local:
     if: ${{ github.event.inputs.LOCAL_BUILD == 'true' }}
     needs: build
@@ -127,10 +131,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      # Create a package that could be sent to Curseforge
-      - name: Package and release
-        uses: BigWigsMods/packager@master
-
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v2
