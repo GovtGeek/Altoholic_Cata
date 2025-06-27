@@ -127,13 +127,17 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      # Create a package that could be sent to Curseforge
+      - name: Package and release
+        uses: BigWigsMods/packager@master
+
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          files: .release/${{ env.ZIP_FILE_NAME }}
+          files: .release/Altoholic*.zip
           tag_name: ${{ needs.build.outputs.ADDON_VERSION }}
           draft: false
           prerelease: true
