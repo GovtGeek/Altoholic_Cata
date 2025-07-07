@@ -245,7 +245,7 @@ DataStore:OnAddonLoaded("Altoholic_Summary", function()
 		["CurrentFactions"] = 3,						-- 1 = Alliance, 2 = Horde, 3 = Both
 		["CurrentLevels"] = 1,							-- 1 = All
 		["CurrentLevelsMin"] = 1,							
-		["CurrentLevelsMax"] = 90,					
+		["CurrentLevelsMax"] = GetMaxLevelForExpansionLevel(GetExpansionLevel()),
 		["CurrentBankType"] = 0,						-- 0 = All
 		["CurrentClasses"] = 0,							-- 0 = All
 		["CurrentTradeSkill"] = 0,						-- 0 = All
@@ -258,4 +258,8 @@ DataStore:OnAddonLoaded("Altoholic_Summary", function()
 	}
 	options = Altoholic_SummaryTab_Options
 
+	-- Fix for expansion max level change (stops the need for changing filter from all to something and back)
+	if options[OPTION_LEVELS] == 1 then 
+		options["CurrentLevelsMax"] = GetMaxLevelForExpansionLevel(GetExpansionLevel())
+	end
 end)
