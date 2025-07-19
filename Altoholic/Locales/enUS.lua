@@ -75,7 +75,7 @@ L["All cooldowns are up"] = true
 L["All realms"] = true
 L["Alliance Forces"] = true
 L["All-in-one"] = true
-L["Already known by "] = true
+L["Already known by"] = true
 L["Altoholic:|r Usage = /altoholic search <item name>"] = true
 L["Ancient Lichen"] = true
 L["and above"] = true
@@ -269,7 +269,7 @@ L["Conquest"] = true
 L["Conspicuous Urn"] = true
 L["Containers"] = true
 L["Copper Vein"] = true
-L["Could be learned by "] = true
+L["Could be learned by"] = true
 L["Counters"] = true
 L["Crafted Weapons"] = true
 L["Crimson Templar (Fire)"] = true

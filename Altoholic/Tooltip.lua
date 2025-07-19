@@ -370,11 +370,11 @@ local function GetRecipeOwnersText(professionName, link, recipeLevel)
 	
 	local lines = {}
 	if #know > 0 then
-		table.insert(lines, format("%s%s|r : %s%s\n", colors.teal, L["Already known by "], colors.white, table.concat(know, ", ")))
+		table.insert(lines, format("%s%s|r: %s%s\n", colors.teal, L["Already known by"], colors.white, table.concat(know, ", ")))
 	end
 	
 	if #couldLearn > 0 then
-		table.insert(lines, format("%s%s|r : %s%s\n", colors.yellow, L["Could be learned by "], colors.white, table.concat(couldLearn, ", ")))
+		table.insert(lines, format("%s%s|r: %s%s\n", colors.yellow, L["Could be learned by"], colors.white, table.concat(couldLearn, ", ")))
 	end
 	
 	if #willLearn > 0 then
@@ -400,12 +400,12 @@ local function AddGlyphOwners(itemID, tooltip)
 	
 	if #know > 0 then
 		tooltip:AddLine(" ",1,1,1)
-		tooltip:AddLine(format("%s%s|r: %s%s", colors.teal, L["Already known by "], colors.white, table.concat(know, ", ")), 1, 1, 1, 1)
+		tooltip:AddLine(format("%s%s|r: %s%s", colors.teal, L["Already known by"], colors.white, table.concat(know, ", ")), 1, 1, 1, 1)
 	end
 	
 	if #couldLearn > 0 then
 		tooltip:AddLine(" ",1,1,1)
-		tooltip:AddLine(format("%s%s|r: %s%s", colors.yellow, L["Could be learned by "], colors.white, table.concat(couldLearn, ", ")), 1, 1, 1, 1)
+		tooltip:AddLine(format("%s%s|r: %s%s", colors.yellow, L["Could be learned by"], colors.white, table.concat(couldLearn, ", ")), 1, 1, 1, 1)
 	end
 end
 
