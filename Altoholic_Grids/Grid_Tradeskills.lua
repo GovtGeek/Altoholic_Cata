@@ -192,7 +192,7 @@ local callbacks = {
 			local professionName = GetSpellInfo(tradeskills[Altoholic_GridsTab_Options[OPTION_TRADESKILL]])
 			local profession = DataStore:GetProfession(character, professionName)
 
-			if profession and #profession.Crafts ~= 0 then
+			if profession and profession.Crafts and #profession.Crafts ~= 0 then
 				-- do not enable this yet .. working fine, but better if more filtering allowed. ==> filtering on rarity
 				
 				-- local _, _, itemRarity, itemLevel = GetItemInfo(currentItemID)
