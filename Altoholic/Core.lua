@@ -1,6 +1,7 @@
 local addonName, addon = ...
 _G[addonName] = addon
 
+-- ex: 5.5.001-beta-05
 local addonVersion = C_AddOns.GetAddOnMetadata(addonName, "Version")
 local v1, v2, v3, vBeta = string.match(addonVersion, "(%d+).(%d+).(%d+)-*(.*)")
 addon.Version = "v"..addonVersion

@@ -14,7 +14,7 @@ addon:Controller("AltoholicUI.TabGrids", { "AltoholicUI.ColumnOptions", function
 			frame.Equipment.text = L["Equipment"]
 			frame.Factions.text = L["Reputations"]
 			frame.Dailies.text = L["Daily Quests"]
-			--frame.Dailies.Icon:SetTexCoord(0, 0.75, 0, 0.75)
+			frame.Dailies.Icon:SetTexCoord(0, 0.75, 0, 0.75)
 			frame.Attunements.text = L["Attunements"]
 			frame.Keys.text = L["Keys"]
 			

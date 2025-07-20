@@ -1,6 +1,10 @@
-Altoholic Cataclysm Classic Changelog (dates in dd/mm/yyyy)
-=======================================
+Altoholic Mists of Pandaria Classic Changelog (dates in dd/mm/yyyy)
+=============================================
 
+
+5.5.001 (20/07/2025)
+
+- Mists of Pandaria compatible version : put together by GovtGeek, huge thanks to him for his work in my absence !
 
 4.4.005 (27/06/2024)
 

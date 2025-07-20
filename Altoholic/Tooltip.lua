@@ -370,15 +370,15 @@ local function GetRecipeOwnersText(professionName, link, recipeLevel)
 	
 	local lines = {}
 	if #know > 0 then
-		table.insert(lines, format("%s%s|r: %s%s\n", colors.teal, L["Already known by"], colors.white, table.concat(know, ", ")))
+		table.insert(lines, format("%s%s|r : %s%s\n", colors.teal, L["Already known by"], colors.white, table.concat(know, ", ")))
 	end
 	
 	if #couldLearn > 0 then
-		table.insert(lines, format("%s%s|r: %s%s\n", colors.yellow, L["Could be learned by"], colors.white, table.concat(couldLearn, ", ")))
+		table.insert(lines, format("%s%s|r : %s%s\n", colors.yellow, L["Could be learned by"], colors.white, table.concat(couldLearn, ", ")))
 	end
 	
 	if #willLearn > 0 then
-		table.insert(lines, format("%s%s|r : %s%s", colors.red, L["Will be learnable by "], colors.white, table.concat(willLearn, ", ")))
+		table.insert(lines, format("%s%s|r : %s%s", colors.red, L["Will be learnable by"], colors.white, table.concat(willLearn, ", ")))
 	end
 	
 	return table.concat(lines, "\n")
