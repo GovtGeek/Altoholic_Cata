@@ -106,7 +106,7 @@ jobs:
         id: generate_zip_file
         run: |
           # Combine date and value to form the zip file name
-          DISPLAY_NAME="Altoholic_Mists_v$ADDON_VERSION" 
+          DISPLAY_NAME="Altoholic_v$ADDON_VERSION" 
           ZIP_FILE_NAME="$DISPLAY_NAME.zip"
           echo "ZIP_FILE_NAME=$ZIP_FILE_NAME" >> $GITHUB_ENV
           echo "ZIP_FILE_NAME=$ZIP_FILE_NAME" >> $GITHUB_OUTPUT
