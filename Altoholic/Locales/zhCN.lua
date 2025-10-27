@@ -1,5 +1,5 @@
 local addonName = ...
-local L = DataStore:SetLocale(addonName, "zhCN")
+local L = AddonFactory:SetLocale(addonName, "zhCN")
 if not L then return end
 
 L[" (Heroic)"] = "(英雄模式)"

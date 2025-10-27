@@ -3,7 +3,7 @@ local addonName = "Altoholic"
 local addon = _G[addonName]
 local colors = addon.Colors
 
-local L = DataStore:GetLocale(addonName)
+local L = AddonFactory:GetLocale(addonName)
 
 local parentName = "AltoholicTabSearch"
 local parent
@@ -381,7 +381,7 @@ function ns:TooltipStats(frame)
 	AltoTooltip:Show()
 end
 
-DataStore:OnAddonLoaded(addonTabName, function() 
+AddonFactory:OnAddonLoaded(addonTabName, function() 
 	Altoholic_SearchTab_Options = Altoholic_SearchTab_Options or {
 		["ItemInfoAutoQuery"] = false,
 		["IncludeNoMinLevel"] = true,				-- include items with no minimum level

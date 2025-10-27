@@ -5,7 +5,7 @@ Written by : Thaoky, EU-Marécages de Zangar
 local addonName, addon = ...
 local colors = addon.Colors
 
-local L = DataStore:GetLocale(addonName)
+local L = AddonFactory:GetLocale(addonName)
 local LCI = LibStub("LibCraftInfo-1.0")
 local MVC = LibStub("LibMVC-1.0")
 
@@ -304,7 +304,7 @@ local function OnChatMsgLoot(event, arg)
 	addon:RefreshTooltip()		-- any loot message should cause a refresh
 end
 
-DataStore:OnPlayerLogin(function() 
+AddonFactory:OnPlayerLogin(function() 
 	InitLocalization()
 	addon:SetupOptions()
 	MVC:GetService("AltoholicUI.Events"):Initialize()

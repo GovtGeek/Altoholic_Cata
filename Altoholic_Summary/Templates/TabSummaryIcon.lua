@@ -1,7 +1,7 @@
 local addonName = "Altoholic"
 local addon = _G[addonName]
 local colors = addon.Colors
-local L = DataStore:GetLocale(addonName)
+local L = AddonFactory:GetLocale(addonName)
 
 local OPTION_REALMS = "CurrentRealms"
 local OPTION_FACTIONS = "CurrentFactions"
@@ -235,7 +235,7 @@ addon:Controller("AltoholicUI.TabSummaryIcon", {
 })
 
 -- This should be in TabSummary, not here, move later
-DataStore:OnAddonLoaded("Altoholic_Summary", function() 
+AddonFactory:OnAddonLoaded("Altoholic_Summary", function() 
 	Altoholic_SummaryTab_Options = Altoholic_SummaryTab_Options or {
 		["ShowRestXP150pc"] = false,					-- display max rest xp in normal 100% mode or in level equivalent 150% mode ?
 		["CurrentMode"] = 1,								-- current mode (1 = account summary, 2 = bags, ...)

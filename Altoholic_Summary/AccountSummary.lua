@@ -3,7 +3,7 @@ local addon = _G[addonName]
 local colors = addon.Colors
 local icons = addon.Icons
 
-local L = DataStore:GetLocale(addonName)
+local L = AddonFactory:GetLocale(addonName)
 local MVC = LibStub("LibMVC-1.0")
 local Formatter = MVC:GetService("AltoholicUI.Formatter")
 
@@ -801,12 +801,12 @@ columns["BagSlots"] = {
 			tt:AddDoubleLine(DataStore:GetColoredCharacterName(character), L["COLUMN_BAGS_TITLE"])
 			tt:AddLine(" ")
 			
-			local _, link, size, free, bagType = DataStore:GetContainerInfo(character, 0)
+			local link, size, free, bagType = DataStore:GetContainerInfo(character, 0)
 			tt:AddDoubleLine(format("%s[%s]", colors.white, BACKPACK_TOOLTIP), FormatBagSlots(size, free))
 			
 			for i = 1, 4 do
-				_, link, size, free, bagType = DataStore:GetContainerInfo(character, i)
-
+				link, size, free, bagType = DataStore:GetContainerInfo(character, i)
+				
 				if size ~= 0 then
 					tt:AddDoubleLine(FormatBagType(link, bagType), FormatBagSlots(size, free))
 				end
@@ -908,11 +908,11 @@ columns["BankSlots"] = {
 				return
 			end
 			
-			local _, link, size, free, bagType = DataStore:GetContainerInfo(character, 100)
+			local link, size, free, bagType = DataStore:GetContainerInfo(character, 100)
 			tt:AddDoubleLine(format("%s[%s]", colors.white, L["Bank"]), FormatBagSlots(size, free))
 				
 			for i = 5, 11 do
-				_, link, size, free, bagType = DataStore:GetContainerInfo(character, i)
+				link, size, free, bagType = DataStore:GetContainerInfo(character, i)
 				
 				if size ~= 0 then
 					tt:AddDoubleLine(FormatBagType(link, bagType), FormatBagSlots(size, free))

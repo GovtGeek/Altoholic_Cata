@@ -3,7 +3,7 @@ local addonName = "Altoholic"
 local addon = _G[addonName]
 local colors = addon.Colors
 
-local L = DataStore:GetLocale(addonName)
+local L = AddonFactory:GetLocale(addonName)
 
 local parentName = "AltoholicTabCharacters"
 local parent
@@ -843,7 +843,7 @@ function ns:OnLoad()
 end
 
 
-DataStore:OnAddonLoaded(addonTabName, function() 
+AddonFactory:OnAddonLoaded(addonTabName, function() 
 	Altoholic_CharactersTab_Options = Altoholic_CharactersTab_Options or {
 		["ViewBags"] = true,
 		["ViewBank"] = true,

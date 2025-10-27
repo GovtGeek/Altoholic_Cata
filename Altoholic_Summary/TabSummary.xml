@@ -196,7 +196,7 @@
 		</Frames>
 		<Scripts>
 			<OnLoad>
-				local L = DataStore:GetLocale("Altoholic")
+				local L = AddonFactory:GetLocale("Altoholic")
 				
 				self.MenuItem1:SetText(L["Account Summary"])
 				self.MenuItem2:SetText(L["Bag Usage"])

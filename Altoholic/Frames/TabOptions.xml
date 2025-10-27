@@ -105,7 +105,7 @@
 						-- exit if called to early
 						if not Altoholic_UI_Options then return end
 					
-						local L = DataStore:GetLocale("Altoholic")
+						local L = AddonFactory:GetLocale("Altoholic")
 						local value = self:GetValue()
 						
 						Altoholic_UI_Options.Minimap.IconAngle = value
@@ -123,7 +123,7 @@
 						-- exit if called to early
 						if not Altoholic_UI_Options then return end
 						
-						local L = DataStore:GetLocale("Altoholic")
+						local L = AddonFactory:GetLocale("Altoholic")
 						local value = self:GetValue()
 						
 						Altoholic_UI_Options.Minimap.IconRadius = value
@@ -189,7 +189,7 @@
 						-- exit if called to early
 						if not Altoholic_UI_Options then return end
 					
-						local L = DataStore:GetLocale("Altoholic")
+						local L = AddonFactory:GetLocale("Altoholic")
 						
 						local value = self:GetValue()
 						_G[self:GetName() .. "Text"]:SetText(format("%s (%1.2f)", L["Transparency"], value));

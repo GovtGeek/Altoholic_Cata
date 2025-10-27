@@ -2,7 +2,7 @@ local addonName = ...
 local addon = _G[addonName]
 local colors = addon.Colors
 
-local L = DataStore:GetLocale(addonName)
+local L = AddonFactory:GetLocale(addonName)
 
 local THIS_ACCOUNT = "Default"
 local THIS_REALM = GetRealmName()
